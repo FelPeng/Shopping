@@ -10,8 +10,9 @@ const instance = axios.create({
 //   请求，响应拦截器
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
-// 在发送请求之前做些什么
-// 开启loading，禁止背景点击（节流处理）
+  // config.headers['content-Security-Policy'] = 'upgrade-insecure-requests'
+  // 在发送请求之前做些什么
+  // 开启loading，禁止背景点击（节流处理）
   Toast.loading({
     message: '加载中...',
     forbidClick: true, // 是否禁用背景点击
@@ -24,7 +25,6 @@ instance.interceptors.request.use(function (config) {
     config.headers['Access-Token'] = token
     config.headers.platform = 'H5'
   }
-
   return config
 }, function (error) {
   // 对请求错误做些什么
